@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: depi-app
+  namespace: depi-app-namespace  # Specify the namespace here
+  labels:
+    app: depi-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: depi-app
+  template:
+    metadata:
+      labels:
+        app: depi-app
+    spec:
+      containers:
+      - name: depi-app
+        image: mohamed907/depi-flask-app:latest  # Updated Docker image
+        ports:
+        - containerPort: 5000
+        env:
+        - name: FLASK_ENV
+          value: production
