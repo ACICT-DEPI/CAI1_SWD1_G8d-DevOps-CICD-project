@@ -25,11 +25,13 @@ pipeline {
             }
         }
         
-        stage('Push Docker Image') {
+       stage('Push Docker Image') {
             steps {
                 script {
-                    // Push the built Docker image to Docker Hub
-                    dockerImage.push()
+                    // Push the built Docker image to Docker Hub with credentials
+                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials-id') {
+                        dockerImage.push()
+                    }
                 }
             }
         }
