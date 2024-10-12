@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_HUB_REPO = 'mohamed907/depi-flask-app'  // Your Docker Hub repository
         GIT_REPO_URL = 'https://github.com/mohamedsamir907/depi-project-aws.git'  // Your public GitHub repository URL
-        KUBECONFIG_PATH = '/home/ubuntu/.kube/config'  // Path to kubeconfig on Jenkins server
+        KUBECONFIG_PATH = '/var/lib/jenkins/.kube/config'  // Path to kubeconfig on Jenkins server
         K8S_DEPLOY_DIR = 'k8s/'  // Directory containing Kubernetes YAML files
     }
 
