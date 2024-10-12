@@ -7,7 +7,13 @@ pipeline {
         KUBECONFIG_PATH = '/root/.kube/config'  // Path to kubeconfig on Jenkins server
         K8S_DEPLOY_DIR = 'k8s/'  // Directory containing Kubernetes YAML files
     }
-
+    stages {
+        stage('Clone Repository') {
+            steps {
+                // Clone the Git repository
+                git branch: 'main', url: 'https://github.com/mohamedsamir907/depi-project-aws.git'
+            }
+        }
     stages {
         stage('Checkout Code') {
             steps {
