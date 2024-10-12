@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     // Push the built Docker image to Docker Hub with credentials
-                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials-id') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker1') {
                         dockerImage.push()
                     }
                 }
