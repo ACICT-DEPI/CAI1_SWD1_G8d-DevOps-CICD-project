@@ -24,6 +24,11 @@ pipeline {
                 }
             }
         }
+        stage('Run Tests') {
+            steps {
+                sh 'python -m unittest discover -s tests'
+            }
+        }
         
        stage('Push Docker Image') {
             steps {
@@ -55,6 +60,12 @@ pipeline {
     }
 
     post {
+        success {
+            slackSend(channel: '#cicd-project', color: 'good', message: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' succeeded.")
+        }
+        failure {
+            slackSend(channel: '#cicd-project', color: 'danger', message: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' failed.")
+        }
         always {
             cleanWs()  // Clean workspace after build
         }
