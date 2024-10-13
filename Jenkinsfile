@@ -26,9 +26,13 @@ pipeline {
         }
         stage('Run Tests') {
             steps {
-                sh 'python3 -m unittest discover -s tests'
+                script {
+            // Run tests in the container where the app is built
+                    sh 'docker run --rm mohamed907/depi-flask-app:22 python3 -m unittest discover -s /app/tests'
+                }
             }
         }
+
         
         stage('Push Docker Image') {
             steps {
