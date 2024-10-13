@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "Welcome to the depi-project API! V3.00"
+    return "Welcome to the depi-project API! V4.00"
 
 @app.route('/status')
 def status():
